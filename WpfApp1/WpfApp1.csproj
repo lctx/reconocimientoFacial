@@ -95,9 +95,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FaceBot\FaceBot.csproj">
-      <Project>{A1B36163-C55E-48B2-A1B4-5D52BC2A30AC}</Project>
-      <Name>FaceBot</Name>
+    <ProjectReference Include="..\ClassLibrary1\ClassLibrary1.csproj">
+      <Project>{67ab5dd9-1ddc-487b-bfc3-fed153c1cd37}</Project>
+      <Name>ClassLibrary1</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

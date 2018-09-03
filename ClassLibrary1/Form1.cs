@@ -17,8 +17,7 @@ namespace ClassLibrary1
         {
             InitializeComponent();
         }
-        FaceBot faceBot;
-        
+
 
         public string PathVideo { get ; set; }
 
@@ -36,7 +35,7 @@ namespace ClassLibrary1
 
         private void iniciarHilo()
         {
-            faceBot = new FaceBot(this.PathVideo);
+            FaceBot faceBot = new FaceBot(this.PathVideo);
             if (faceBot.ShowDialog() == DialogResult.OK)
             {
                 label1.Text = faceBot.UserName;

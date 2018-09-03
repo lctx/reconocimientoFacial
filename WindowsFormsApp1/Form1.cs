@@ -22,7 +22,7 @@ namespace WindowsFormsApp1
         {
             ClassLibrary1.Form1 form1a = new ClassLibrary1.Form1();
             form1a.PathVideo = @"C:\Users\Carlos\Videos\VID_20180811_144136.mp4";
-            form1a.Show();
+            form1a.ShowDialog();
         }
     }
 }

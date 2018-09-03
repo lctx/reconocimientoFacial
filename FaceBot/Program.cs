@@ -16,7 +16,6 @@ namespace FaceBot
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            string pathVideo = null;
             Application.Run(new Form1());
         }
     }

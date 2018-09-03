@@ -73,12 +73,12 @@ namespace ClassLibrary1
         private void Run()
         {
             try
-            { 
-                //VideoCapture = new VideoCapture(@PathVideo);
-                VideoCapture = new VideoCapture(Emgu.CV.CvEnum.CaptureType.OpenNI);
-                MessageBox.Show(VideoCapture.CaptureSource.ToString());
+            {
+                //VideoCapture = new VideoCapture(Emgu.CV.CvEnum.CaptureType.Openni2);
+
                 //VideoCapture = new VideoCapture(@"C:\Users\Carlos\Videos\VID_20180811_144136.mp4");
                 //VideoCapture = new VideoCapture();
+                VideoCapture = new VideoCapture(PathVideo);
                 VideoCapture.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.FrameHeight, 720);
                 VideoCapture.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.FrameWidth, 1280);
 
@@ -87,10 +87,10 @@ namespace ClassLibrary1
                 DataStore = new DataStoreAccess(Config.DatabaseFilePath);
 
                 //no se que hace este hilo :|
-                FacesDetectorTimer = new System.Timers.Timer();
-                FacesDetectorTimer.Interval = Config.FacesDetectorInterval;
-                FacesDetectorTimer.Elapsed += FacesDetectorElapsed;
-                FacesDetectorTimer.Start();
+                //FacesDetectorTimer = new System.Timers.Timer();
+                //FacesDetectorTimer.Interval = Config.FacesDetectorInterval;
+                //FacesDetectorTimer.Elapsed += FacesDetectorElapsed;
+                //FacesDetectorTimer.Start();
 
                 FacesRecognizerTimer = new System.Timers.Timer();
                 FacesRecognizerTimer.Interval = Config.FacesRecognizerInterval;

@@ -74,17 +74,18 @@ namespace FaceBot
         {
             try
             { 
-                VideoCapture = new VideoCapture(Emgu.CV.CvEnum.CaptureType.Openni2);
+                //VideoCapture = new VideoCapture(Emgu.CV.CvEnum.CaptureType.Openni2);
                 
                 //VideoCapture = new VideoCapture(@"C:\Users\Carlos\Videos\VID_20180811_144136.mp4");
                 //VideoCapture = new VideoCapture();
+                VideoCapture = new VideoCapture(PathVideo);
                 VideoCapture.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.FrameHeight, 720);
                 VideoCapture.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.FrameWidth, 1280);
 
                 FrontalFaceCascadeClassifier = new CascadeClassifier(Application.StartupPath + Config.FaceHaarCascadeFilePath);
                 RecognizerEngine = new RecognizerEngine(Config.DatabaseFilePath, Config.TrainingDataFilePath);
                 DataStore = new DataStoreAccess(Config.DatabaseFilePath);
-
+                
                 //no se que hace este hilo :|
                 //FacesDetectorTimer = new System.Timers.Timer();
                 //FacesDetectorTimer.Interval = Config.FacesDetectorInterval;
