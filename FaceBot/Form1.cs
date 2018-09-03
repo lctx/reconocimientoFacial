@@ -25,6 +25,7 @@ namespace FaceBot
             //Creamos la instancia del hilo 
             Thread hilo = new Thread(delegado);
             //Iniciamos el hilo 
+            //dfs
             hilo.Start();
             //Thread.Sleep(10000);
             //hilo.Abort();
