@@ -12,8 +12,8 @@ namespace FaceBot
         public static readonly string FaceHaarCascadeFilePath = "/haarcascade_frontalface_default.xml";
         public static readonly string DatabaseFilePath = "./Database/facebot.db";
         public static readonly string TrainingDataFilePath = "./Database/trainingdata.yaml";
-        public static readonly double FacesDetectorInterval = 500;
-        public static readonly double FacesRecognizerInterval = 2000;
+        public static readonly double FacesDetectorInterval = Configuraciones.Default.FacesDetectorInterval;
+        public static readonly double FacesRecognizerInterval = Configuraciones.Default.FacesRecognizerInterval;
         public static readonly string UnrecognizedUserName = "NoReconocido";
         public static readonly string DefaultBrowserProcessName = "chrome";
     }

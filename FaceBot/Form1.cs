@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,6 +20,8 @@ namespace FaceBot
             InitializeComponent();
         }
         FaceBot faceBot;
+
+
         private void button1_Click(object sender, EventArgs e)
         {
             //Creamos el delegado 
@@ -33,7 +37,7 @@ namespace FaceBot
 
         private void iniciarHilo()
         {
-            faceBot = new FaceBot((@"C:\Users\Carlos\Videos\VID_20180811_144136.mp4"));
+            faceBot = new FaceBot();
             if (faceBot.ShowDialog() == DialogResult.OK)
             {
                 label1.Text = faceBot.UserName;

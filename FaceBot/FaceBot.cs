@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Net;
+using System.Net.Sockets;
+using System.Text;
 using System.Windows.Forms;
 
 namespace FaceBot
@@ -60,37 +63,38 @@ namespace FaceBot
         {
             CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();
-            //Run();
-        }
-        public FaceBot(string pathVideo)
-        {
-            CheckForIllegalCrossThreadCalls = false;
-            InitializeComponent();
-            PathVideo= pathVideo;
             Run();
         }
+        //public FaceBot(string pathVideo)
+        //{
+        //    CheckForIllegalCrossThreadCalls = false;
+        //    InitializeComponent();
+        //    PathVideo= pathVideo;
+        //    Run();
+        //}
 
         private void Run()
         {
             try
-            { 
+            {
                 //VideoCapture = new VideoCapture(Emgu.CV.CvEnum.CaptureType.Openni2);
-                
+
                 //VideoCapture = new VideoCapture(@"C:\Users\Carlos\Videos\VID_20180811_144136.mp4");
-                //VideoCapture = new VideoCapture();
-                VideoCapture = new VideoCapture(PathVideo);
+                string ruta = Path.GetTempPath() + @"\recVid.mp4";
+                VideoCapture = new VideoCapture(ruta);
+                //VideoCapture = new VideoCapture(@"C:\Users\Carlos\Videos\VID_20180811_144136.mp4");
                 VideoCapture.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.FrameHeight, 720);
                 VideoCapture.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.FrameWidth, 1280);
 
                 FrontalFaceCascadeClassifier = new CascadeClassifier(Application.StartupPath + Config.FaceHaarCascadeFilePath);
                 RecognizerEngine = new RecognizerEngine(Config.DatabaseFilePath, Config.TrainingDataFilePath);
                 DataStore = new DataStoreAccess(Config.DatabaseFilePath);
-                
+
                 //no se que hace este hilo :|
-                //FacesDetectorTimer = new System.Timers.Timer();
-                //FacesDetectorTimer.Interval = Config.FacesDetectorInterval;
-                //FacesDetectorTimer.Elapsed += FacesDetectorElapsed;
-                //FacesDetectorTimer.Start();
+                FacesDetectorTimer = new System.Timers.Timer();
+                FacesDetectorTimer.Interval = Config.FacesDetectorInterval;
+                FacesDetectorTimer.Elapsed += FacesDetectorElapsed;
+                FacesDetectorTimer.Start();
 
                 FacesRecognizerTimer = new System.Timers.Timer();
                 FacesRecognizerTimer.Interval = Config.FacesRecognizerInterval;
@@ -136,6 +140,23 @@ namespace FaceBot
                             {
                                 UserName = user.UserName;
                                 this.DialogResult = DialogResult.OK;
+                                using (StreamWriter writer = new StreamWriter(Path.GetTempPath() + @"\Archivo.dat"))
+                                {
+                                    writer.WriteLine(string.Format("{0}", user.UserName));
+                                }
+                                //try
+                                //{
+                                //    miPrimerSocket.Connect(miDireccion);
+                                //    //Console.WriteLine("Conectado con exito");
+                                //    //Console.WriteLine("Ingrese el texto a enviar al servidor: ");
+                                //    textoEnviar = Encoding.Default.GetBytes(UserName); //pasamos el texto a array de bytes
+                                //    miPrimerSocket.Send(textoEnviar, 0, textoEnviar.Length, 0); // y lo enviamos
+                                //    miPrimerSocket.Close();
+                                //}
+                                //catch (Exception error)
+                                //{
+                                //    MessageBox.Show(error.Message);
+                                //}
                                 this.Dispose();
                                 FacesDetectorTimer.Stop();
                                 FacesRecognizerTimer.Stop();
@@ -263,7 +284,7 @@ namespace FaceBot
 
         private void FaceBotForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            MessageBox.Show(UserName);
+            //MessageBox.Show(UserName);
             //Process.GetCurrentProcess().Kill();
         }
     }

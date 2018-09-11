@@ -81,6 +81,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config.cs" />
+    <Compile Include="Configuraciones.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Configuraciones.settings</DependentUpon>
+    </Compile>
     <Compile Include="DataStoreAccess.cs" />
     <Compile Include="Face.cs" />
     <Compile Include="FaceBot.cs">
@@ -122,6 +127,10 @@
     <EmbeddedResource Include="UserInfo.resx">
       <DependentUpon>UserInfo.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Configuraciones.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Configuraciones.Designer.cs</LastGenOutput>
+    </None>
     <None Include="OpenTK.dll.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
